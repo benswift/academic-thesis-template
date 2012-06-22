@@ -1,0 +1,383 @@
+%==========================================
+%
+% Academic thesis template
+%
+% Based on KOMA-Script book class.
+%
+% This template is not officially endorsed 
+% by any educational institution.
+%
+% Ben Swift   22/6/12
+% benjamin.j.swift@gmail.com
+% http://github.com/benswift/thesis-template
+% 
+% This template is in the public domain
+% 
+%==========================================
+% preamble
+\documentclass[12pt,xetex]{scrbook}
+\KOMAoptions{%
+  headings=normal,
+  captions=rightbeside,
+  bibliography=totoc,
+  listof=totoc}
+
+% fonts (need to have Linux Libertine .otf fonts installed)
+\usepackage{libertineotf}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{argmax}}}
+
+% custom monospace font - I like Inconsolata
+\usepackage{fontspec}
+\setmonofont[Scale=MatchLowercase,Mapping=tex-text]{Inconsolata}
+
+% tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+% if you want colour tables
+% \usepackage{colortbl}
+
+% useful for giving `named' colours
+\usepackage[svgnames,hyperref]{xcolor}
+
+% Put all your figures in a `figures' subdirectory
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{./figures/}}
+
+% use subcaption for multi-part figures
+\usepackage[margin=10pt,labelfont=bf]{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% handy bits and pieces
+\usepackage{metalogo} % provides xelatex logo
+\usepackage{hologo} % provides xelatex logo
+\usepackage{verbatim}
+
+% double spacing
+\usepackage{setspace}
+
+% custom list environments - feel free to add your own
+\usepackage{enumitem}
+
+\newlist{transcriptlist}{description}{1}
+\setlist[transcriptlist]{font=\sffamily\bfseries,
+                              align=left,
+                              leftmargin=1.6cm,
+                              labelindent=\parindent, 
+                              labelwidth=*}
+
+\newenvironment{transcript}%
+{\small\begin{transcriptlist}}%
+{\end{transcriptlist}}
+
+\newlist{headinglist}{description}{1}
+\setlist[headinglist]{font=\sffamily\bfseries, 
+                           leftmargin=0cm,
+                           style=nextline}
+
+% Uses biblatex for reference styling - see the biblatex documentation
+% (which is pretty good). Also, use biber, which *should* just be a
+% drop-in replacement for bibtex.
+\usepackage[%
+backend=biber,
+natbib=true,
+backref=true,
+citecounter=true,
+dashed=false,
+backrefstyle=three,
+citestyle=authoryear-icomp,
+firstinits=true,
+maxcitenames=2,
+maxbibnames=10,
+uniquename=mininit,
+bibstyle=authoryear,
+% refsegment=chapter,
+% ibidtracker=strict,
+url=false,
+doi=false]{biblatex}
+
+% don't print the month in the reference section
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+
+% change this to the name of your .bib file
+\addbibresource{thesis.bib}
+
+% csquotes - for inline and block quoting
+\usepackage[english=british,threshold=15,thresholdtype=words]{csquotes}
+\SetCiteCommand{\parencite}
+
+\newenvironment*{smallquote}
+  {\quote\small}
+  {\endquote}
+\SetBlockEnvironment{smallquote}
+
+% hyperref & bookmark
+\usepackage[%
+unicode=true,
+hyperindex=true,
+bookmarks=true,
+pdftitle={Thesis Title},
+pdfauthor={Thesis author},
+colorlinks=true, % change to false for final printing
+pdfborder=0,
+allcolors=DarkBlue,
+% plainpages=false,
+pdfpagelabels,
+hyperfootnotes=true]{hyperref}
+
+\usepackage{bookmark}
+
+\setcounter{tocdepth}{1} % only include `sections' in toc 
+
+% glossaries package
+\usepackage[%
+acronym, 
+nomain,
+toc=true]{glossaries}
+
+% for `clever' referencing - needs to be loaded after hyperref
+\usepackage{cleveref}
+
+% set up indexing macros
+\makeindex
+\makeglossaries
+
+%============================================
+%============================================
+% document 
+
+\begin{document}
+
+% acronyms (uses glossaries package)
+% add your own acronyms here, and then refer to them in the text as
+% e.g. \gls{tla}
+
+\newacronym{tla}{TLA}{Three Letter Acronym}
+
+% other definitions
+
+\renewcommand{\thepage}{\roman{page}}
+
+%\newcommand{\figwidth}{4.05in}
+
+%============================================
+%============================================
+% title page and dedication
+
+\pagestyle{empty}
+
+\title{Thesis Title}
+% \subtitle{Thesis Subtitle}
+
+\author{Thesis author}
+
+\date{\today}
+
+\publishers{%
+  A thesis submitted for the degree of \\
+  Doctor of Philosophy of \\
+  The University of Wherever}
+
+\uppertitleback{%
+  \textbf{Institutional Address}\\
+
+  Research School of Taxidermy\\
+  Building 13\\
+  University of Wherever\\
+  \textsc{Some Country}\\
+  \bigskip\\
+  \textbf{Supervisory Panel}\\
+
+  Prof. Alex Pingu  (Panel Chair)\\
+  Research School of Taxidermy\\
+  The University of Wherever\\
+
+  Dr. John Oldmate\\
+  School of Cooking\\
+  The University of Wherever\\
+  \bigskip\\
+  Set in Linux Libertine with the help of {\KOMAScript} and
+  \XeLaTeX.\\
+
+  \copyright~\the\year. All rights reserved.}
+
+\dedication{\emph{For my Ma and Pa}}
+
+\pdfbookmark{Title Page}{Title Page}
+\maketitle
+
+%============================================
+%============================================
+% preliminaries
+
+\frontmatter
+
+% declaration
+
+\cleardoublepage
+
+\vspace*{0.4\textheight}
+
+\begin{center}
+  Except where otherwise indicated, this thesis is my own original
+  work.
+\end{center}
+\vspace*{4cm}
+
+\begin{flushright}
+  \begin{minipage}{4cm}
+    My name\\
+    \today
+  \end{minipage}
+\end{flushright}
+
+\cleardoublepage
+
+\addchap{Publications}
+\label{chap:pub}
+
+Here's some stuff I wrote.
+
+\cleardoublepage
+
+\addchap{Acknowledgements}
+\label{chap:ack}
+
+Thanks so much, everyone.  You're all fantastic and I love youse all.
+
+\cleardoublepage
+
+\begin{onehalfspace}
+
+\addchap{Abstract}
+
+If I was forced to describe this thesis in less than 500 words, this
+is how I'd do it\ldots
+
+% tables of contents, figures, tables
+
+\cleardoublepage
+\pdfbookmark{Contents}{Contents}
+\tableofcontents
+\listoffigures
+\listoftables
+
+% make acronym list
+
+\printglossary[type=\acronymtype,title=Abbreviations]
+
+%============================================
+%============================================
+% main text
+
+\mainmatter
+
+\pagestyle{headings}
+
+\setchapterpreamble[u]{%
+  \dictum[\emph{The Carpenters}---We've only just begun]{We've only just begun\ldots}
+  \bigskip}
+\chapter{Introduction}
+\label{chap:intro}
+
+There are lots of good places to get help with writing LaTeX, so I
+won't go into that here.  It is worth noting that the packages used in
+this thesis template (which you can see if you read the `header' of
+the \texttt{thesis.tex} file have pretty good documentation, so it
+might be worth looking at that for clues on how to use the \texttt{glossaries},
+and the \texttt{csquotes} package.
+
+For figures, you can either use single figures (as in
+\cref{fig:anchor}) or multi-part figures (as in \cref{fig:dog-figure})
+using the \texttt{subcaption} package. Also, notice that the word
+`figure' (or `table', or `equation') is automatically inserted by the
+\texttt{cref} macro from the \texttt{cleveref} package. Isn't that
+\emph{clever}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{anchor}
+  \caption{A picture of an anchor.  Shared by flickr user
+    \texttt{phill.lister} under a Creative Commons attribution licence
+     (CC BY 2.0).}
+  \label{fig:anchor}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \subcaptionbox{A dog.\label{fig:right-way-up-dog}}[\textwidth]%
+  {\includegraphics[width=0.7\textwidth]{dog-1}}\\
+  \vspace{1cm}
+  \subcaptionbox{The same dog (presumably), but this time
+    upside-down.  Crazy times.\label{fig:upside-down-dog}}[\textwidth]%
+  {\includegraphics[width=0.7\textwidth]{dog-2}}%
+  \caption{An example of a multi-part figure using the
+    \texttt{subcaption} package. Pictures shared by flickr user
+    \texttt{pamplemousse2007} under a Creative Commons attribution
+    licence (CC BY 2.0).}
+  \label{fig:dog-figure}
+\end{figure}
+
+
+%============================================
+%============================================
+
+% \setchapterpreamble[u]{%
+%   \dictum[Dorothy, Wizard of Oz]{Toto, I've a feeling we're not in Kansas anymore.}
+%   \bigskip}
+\setchapterpreamble[u]{%
+  \dictum[\emph{The Hollies}, He 'Aint Heavy]{%
+    The road is long,\\
+    with many a winding turn\\
+    That leads us to who\\
+    knows where, who knows where?}
+  \bigskip}
+
+\chapter{The second chapter}
+\label{chap:second-chapter}
+
+Now, all you have to do is write your thesis.  Piece of cake.
+
+%============================================
+%============================================
+
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+You probably should tie it all together here.
+
+\section{Summary of contributions}
+\label{sec:summary-of-contributions}
+
+\begin{headinglist}
+\item[Some bollocks]
+  We did some bollocks, and it was pretty interesting.
+\item[Some other bollocks] 
+  Really, if you think about it, we did a whole other lot of bollocks
+  as well.
+\end{headinglist}
+
+%============================================
+%============================================
+% end matter
+
+\appendix
+
+\chapter{An appendix}
+\label{chap:an-appendix}
+
+Put any appendices here---they are just like regular chapters, except
+they follow the \texttt{\textbackslash{}appendix} directive.
+
+\end{onehalfspace}
+
+\backmatter
+
+\bookmarksetup{startatroot}
+
+\printbibliography[title=References,heading=bibintoc]
+
+\end{document}

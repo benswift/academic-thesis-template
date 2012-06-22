@@ -1,0 +1,5 @@
+# ignore all latex/bibtex auxillary files
+
+thesis*
+!thesis.tex
+!thesis.bib
