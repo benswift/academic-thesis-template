@@ -8,12 +8,13 @@
 % by any educational institution.
 %
 % Ben Swift   22/6/12
-% benjamin.j.swift@gmail.com
+% ben@benswift.me
 % http://github.com/benswift/thesis-template
 % 
 % This template is in the public domain
 % 
 %==========================================
+
 % preamble
 \documentclass[12pt,xetex]{scrbook}
 \KOMAoptions{%
@@ -31,15 +32,25 @@
 \usepackage{AlegreyaSans}
 \usepackage{sourcecodepro}
 
+%%%%%%%%%%
+% tables %
+%%%%%%%%%%
 
-% tables
 \usepackage{booktabs}
 \usepackage{tabularx}
 % if you want colour tables
 % \usepackage{colortbl}
 
+%%%%%%%%%%%
+% colours %
+%%%%%%%%%%%
+
 % useful for giving `named' colours
 \usepackage[svgnames,hyperref]{xcolor}
+
+%%%%%%%%%%%
+% figures %
+%%%%%%%%%%%
 
 % Put all your figures in a `figures' subdirectory
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -50,13 +61,9 @@
 \usepackage[labelformat=simple]{subcaption}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
-% handy bits and pieces
-\usepackage{metalogo} % provides xelatex logo
-\usepackage{hologo} % provides xelatex logo
-\usepackage{verbatim}
-
-% double spacing
-\usepackage{setspace}
+%%%%%%%%%
+% lists %
+%%%%%%%%%
 
 % custom list environments - feel free to add your own
 \usepackage{enumitem}
@@ -76,6 +83,10 @@
 \setlist[headinglist]{font=\sffamily\bfseries, 
                            leftmargin=0cm,
                            style=nextline}
+
+%%%%%%%%%%
+% BibTeX %
+%%%%%%%%%%
 
 % Uses biblatex for reference styling - see the biblatex documentation
 % (which is pretty good). Also, use biber, which *should* just be a
@@ -105,6 +116,10 @@ doi=false]{biblatex}
 % change this to the name of your .bib file
 \addbibresource{thesis.bib}
 
+%%%%%%%%%%
+% quotes %
+%%%%%%%%%%
+
 % csquotes - for inline and block quoting
 \usepackage[english=british,threshold=15,thresholdtype=words]{csquotes}
 \SetCiteCommand{\parencite}
@@ -113,6 +128,10 @@ doi=false]{biblatex}
   {\quote\small}
   {\endquote}
 \SetBlockEnvironment{smallquote}
+
+%%%%%%%%%%%%%%
+% hyperlinks %
+%%%%%%%%%%%%%%
 
 % hyperref & bookmark
 \usepackage[%
@@ -132,11 +151,27 @@ hyperfootnotes=true]{hyperref}
 
 \setcounter{tocdepth}{1} % only include `sections' in toc 
 
-% glossaries package
+%%%%%%%%%%%%%%
+% glossaries %
+%%%%%%%%%%%%%%
+
 \usepackage[%
 acronym, 
 nomain,
 toc=true]{glossaries}
+
+%%%%%%%%
+% misc %
+%%%%%%%%
+
+
+% handy bits and pieces
+\usepackage{metalogo} % provides xelatex logo
+\usepackage{hologo} % provides xelatex logo
+\usepackage{verbatim}
+
+% double spacing
+\usepackage{setspace}
 
 % for `clever' referencing - needs to be loaded after hyperref
 \usepackage{cleveref}
@@ -199,7 +234,7 @@ toc=true]{glossaries}
   School of Cooking\\
   The University of Wherever\\
   \bigskip\\
-  Set in Linux Libertine with the help of {\KOMAScript} and
+  Set in Alegreya with the help of {\KOMAScript} and
   \XeLaTeX.\\
 
   \copyright~\the\year. All rights reserved.}
@@ -381,3 +416,7 @@ they follow the \texttt{\textbackslash{}appendix} directive.
 \printbibliography[title=References,heading=bibintoc]
 
 \end{document}
+
+% Local Variables:
+% TeX-engine: xetex
+% End:
