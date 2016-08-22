@@ -5,7 +5,7 @@ FOSS fonts, and a few handy LaTeX packages.  Pull requests welcome.
 
 # Example
 
-[This is what the output pdf looks like.](https://github.com/downloads/benswift/academic-thesis-template/thesis.pdf)
+[This is what the output pdf looks like.](thesis.pdf)
 
 # Licence
 
