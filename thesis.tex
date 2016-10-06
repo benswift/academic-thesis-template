@@ -4,15 +4,15 @@
 %
 % Based on KOMA-Script book class.
 %
-% This template is not officially endorsed 
+% This template is not officially endorsed
 % by any educational institution.
 %
 % Ben Swift   22/6/12
 % ben@benswift.me
 % http://github.com/benswift/thesis-template
-% 
+%
 % This template is in the public domain
-% 
+%
 %==========================================
 
 % preamble
@@ -71,7 +71,7 @@
 \setlist[transcriptlist]{font=\sffamily\bfseries,
                               align=left,
                               leftmargin=1.6cm,
-                              labelindent=\parindent, 
+                              labelindent=\parindent,
                               labelwidth=*}
 
 \newenvironment{transcript}%
@@ -79,9 +79,15 @@
 {\end{transcriptlist}}
 
 \newlist{headinglist}{description}{1}
-\setlist[headinglist]{font=\sffamily\bfseries, 
+\setlist[headinglist]{font=\sffamily\bfseries,
                            leftmargin=0cm,
                            style=nextline}
+
+%%%%%%%%%%%%%%%
+% source code %
+%%%%%%%%%%%%%%%
+
+\usepackage{minted}
 
 %%%%%%%%%%
 % BibTeX %
@@ -148,14 +154,14 @@ hyperfootnotes=true]{hyperref}
 
 \usepackage{bookmark}
 
-\setcounter{tocdepth}{1} % only include `sections' in toc 
+\setcounter{tocdepth}{1} % only include `sections' in toc
 
 %%%%%%%%%%%%%%
 % glossaries %
 %%%%%%%%%%%%%%
 
 \usepackage[%
-acronym, 
+acronym,
 nomain,
 toc=true]{glossaries}
 
@@ -181,7 +187,7 @@ toc=true]{glossaries}
 
 %============================================
 %============================================
-% document 
+% document
 
 \begin{document}
 
@@ -324,6 +330,9 @@ the \texttt{thesis.tex} file have pretty good documentation, so it
 might be worth looking at that for clues on how to use the \texttt{glossaries},
 and the \texttt{csquotes} package.
 
+\section{Figures}
+\label{sec:figures}
+
 For figures, you can either use single figures (as in
 \cref{fig:anchor}) or multi-part figures (as in \cref{fig:dog-figure})
 using the \texttt{subcaption} package. Also, notice that the word
@@ -355,6 +364,19 @@ using the \texttt{subcaption} package. Also, notice that the word
   \label{fig:dog-figure}
 \end{figure}
 
+\section{Source code}
+\label{sec:source-code}
+
+If you want to use the
+\href{https://github.com/gpoore/minted}{\textbf{minted}} package, you
+can even include source code. This can be a bit fiddly to set up,
+check out the
+\href{https://github.com/gpoore/minted/blob/master/source/minted.pdf}{\textbf{documentation}}
+for more info.
+
+\begin{minted}{scheme}
+(println "I love lisp")
+\end{minted}
 
 %============================================
 %============================================
@@ -389,7 +411,7 @@ You probably should tie it all together here.
 \begin{headinglist}
 \item[Some bollocks]
   We did some bollocks, and it was pretty interesting.
-\item[Some other bollocks] 
+\item[Some other bollocks]
   Really, if you think about it, we did a whole other lot of bollocks
   as well.
 \end{headinglist}
@@ -418,4 +440,5 @@ they follow the \texttt{\textbackslash{}appendix} directive.
 
 % Local Variables:
 % TeX-engine: xetex
+% TeX-command-extra-options: "-shell-escape"
 % End:
